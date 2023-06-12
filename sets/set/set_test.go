@@ -1,6 +1,10 @@
 package set
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/hugovallada/go-demos/sets/tests"
+)
 
 func TestNewSetWithoutGivingElementsCreateANewSetWithoutAnyElements(t *testing.T) {
 	newSet := New[string]()
@@ -59,7 +63,7 @@ func TestContainsShouldReturnTrueWhenTheElementExistsInTheSet(t *testing.T) {
 	newSet.AddCollection([]string{"ola", "mundo", "hello", "world"})
 
 	if !newSet.Contains("ola") {
-		t.Error("The set should contains the world 'ola'")
+		t.Error("o teste deveria conter a palavra 'ola'")
 	}
 }
 
@@ -68,6 +72,18 @@ func TestContainsShouldReturnFalseWhenTheElementDoesNotExistsInTheSet(t *testing
 	newSet.AddCollection([]string{"ola", "mundo", "hello", "world"})
 
 	if newSet.Contains("hold") {
-		t.Error("The set should not contains the world 'hold'")
+		t.Error("o teste não deveria conter a palavra 'hold'")
+	}
+}
+
+func TestWhenAddingNewValuesWithRepeatedValuesIgnoreTheRepeatedOnes(t *testing.T) {
+	tc := tests.PrepareTestCase()
+	for _, testCase := range tc {
+		newSet := New[string]()
+		newSet.AddAll(testCase.Entry...)
+		list := newSet.List()
+		if len(list) != len(testCase.Expected) {
+			t.Error("o numero de elementos é diferente do esperado")
+		}
 	}
 }
