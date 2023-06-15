@@ -33,4 +33,17 @@ func main() {
 
 	pessoasImmutable := set.NewImmutableSet[Pessoa](persons.List()...)
 	fmt.Println(pessoasImmutable.List())
+
+	locked := set.NewLockableSet("a", "b", "c", "c", "d", "e", "e")
+	fmt.Println(locked.List())
+	locked.Add("z")
+	fmt.Println(locked.List())
+	locked.Lock()
+	locked.Add("x")
+	fmt.Println(locked.List())
+
+	newLocked := set.CreateLockedSet(numeros.List())
+	newLocked.Add(1000)
+	fmt.Println(newLocked.List())
+
 }
