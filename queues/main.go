@@ -16,4 +16,29 @@ func main() {
 	q.Dequeue()
 	fmt.Println(q.List())
 
+	pq := queue.PriorityQueue[string]{}
+	pq.Enqueue("a", queue.HighPriority)
+	pq.Enqueue("b", queue.LowPriority)
+	pq.Enqueue("c", queue.HighPriority)
+	pq.Enqueue("d", queue.HighPriority)
+	pq.Enqueue("e", queue.LowPriority)
+
+	low, high := pq.List()
+
+	fmt.Println("Low:", low)
+	fmt.Println("High:", high)
+
+	pq.Dequeue()
+	pq.Dequeue()
+	pq.Dequeue()
+
+	low, high = pq.List()
+
+	fmt.Println("Low:", low)
+	fmt.Println("High:", high)
+
+	pq.Dequeue()
+	low, high = pq.List()
+	fmt.Println("Low:", low)
+	fmt.Println("High:", high)
 }
