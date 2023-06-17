@@ -2,8 +2,6 @@ package stack
 
 import "testing"
 
-var ()
-
 func TestWhenFunctionAddIsCallShouldAddANewElementInTheEndOfTheStack(t *testing.T) {
 	sut := Stack[string]{
 		elements: []string{"a", "b", "c", "d", "e", "f"},
